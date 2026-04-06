@@ -11,8 +11,16 @@ export default function DashboardPage() {
     fetchDashboard().then(setStats).catch(() => setStats(null));
   }, []);
 
+  const safeDistribution = stats && typeof stats === 'object' && stats.disease_distribution && typeof stats.disease_distribution === 'object'
+    ? stats.disease_distribution
+    : {};
+
+  const safeTimeline = stats && typeof stats === 'object' && Array.isArray(stats.timeline)
+    ? stats.timeline
+    : [];
+
   const distribution = stats
-    ? Object.entries(stats.disease_distribution).map(([k, v]) => ({ label: k.replace('_', ' ').toUpperCase(), value: v }))
+    ? Object.entries(safeDistribution).map(([k, v]) => ({ label: k.replace('_', ' ').toUpperCase(), value: Number(v || 0) }))
     : [];
 
   const colors = ['#2a9d8f', '#fca311', '#e76f51', '#264653', '#d62828'];
@@ -62,7 +70,7 @@ export default function DashboardPage() {
           <h2 className="font-display text-lg font-semibold">Activity Timeline</h2>
           <div className="mt-3 h-64">
             <ResponsiveContainer>
-              <AreaChart data={stats?.timeline ?? []}>
+              <AreaChart data={safeTimeline}>
                 <defs>
                   <linearGradient id="timelineFill" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#14213d" stopOpacity={0.6} />

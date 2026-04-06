@@ -7,8 +7,30 @@ const api = axios.create({
   timeout: 30000
 });
 
-export const fetchDashboard = async () => (await api.get('/dashboard/stats')).data;
-export const fetchPatients = async () => (await api.get('/patients')).data;
+const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
+
+export const fetchDashboard = async () => {
+  const data = (await api.get('/dashboard/stats')).data;
+  if (!isObject(data)) {
+    return {
+      total_scans: 0,
+      high_risk_cases: 0,
+      disease_distribution: {},
+      timeline: []
+    };
+  }
+  return {
+    total_scans: Number(data.total_scans || 0),
+    high_risk_cases: Number(data.high_risk_cases || 0),
+    disease_distribution: isObject(data.disease_distribution) ? data.disease_distribution : {},
+    timeline: Array.isArray(data.timeline) ? data.timeline : []
+  };
+};
+
+export const fetchPatients = async () => {
+  const data = (await api.get('/patients')).data;
+  return Array.isArray(data) ? data : [];
+};
 export const createPatient = async (payload) => (await api.post('/patients', payload)).data;
 export const fetchPatientHistory = async (id) => (await api.get(`/patients/${id}/history`)).data;
 export const fetchMetrics = async () => (await api.get('/model/metrics')).data;
