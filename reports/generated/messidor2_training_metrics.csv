@@ -1,0 +1,2 @@
+samples,train,val,qwk,f1_macro,model_path
+1744,1517,227,0.12441070225922979,0.2276034505268012,ml\models\weights\messidor2_rf.joblib

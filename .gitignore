@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+node_modules/
+frontend/dist/
+*.log
+.env
+.DS_Store
+reports/generated/*.pdf
+data/processed/uploads/*
+ml/models/weights/*.pt
+
+# Keep DIARETDB assets minimal for model training path.
+data/raw/DIARETDB1/diaretdb0_v_1_1/doc/
+data/raw/DIARETDB1/diaretdb0_v_1_1/content.txt
+data/raw/DIARETDB1/diaretdb0_v_1_1/diaretdb0.htm
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/evalscript/
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/html/
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/testdatasets/
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/traindatasets/
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/images/diaretdb0_fundus_images/
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/images/diaretdb0_groundtruths/
+data/raw/DIARETDB1/diaretdb0_v_1_1/resources/images/example_images/

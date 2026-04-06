@@ -1,0 +1,48 @@
+name: RetinalAI CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install backend deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+      - name: Lint import check
+        run: python -c "import fastapi, sqlalchemy, cv2, albumentations"
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install and build frontend
+        working-directory: frontend
+        run: |
+          npm ci || npm install
+          npm run build
+
+  ml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install ML deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ml/requirements.txt
+      - name: Validate dataset builder import
+        run: python -c "from ml.datasets.dataset_loader import UnifiedRetinalDatasetBuilder; print('ok')"

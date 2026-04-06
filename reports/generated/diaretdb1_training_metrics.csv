@@ -1,0 +1,2 @@
+dataset,samples,train,val,accuracy,qwk,f1_macro,precision_macro,recall_macro,model_path
+DIARETDB1_from_res,130,104,26,0.7307692307692307,0.1874999999999999,0.44017094017094016,0.43333333333333335,0.4473684210526316,ml\models\weights\diaretdb1_rf.joblib

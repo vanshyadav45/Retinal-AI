@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-start: #fff3d6;
+  --bg-end: #d9f0ff;
+  --panel: rgba(255, 255, 255, 0.85);
+  --ink-soft: #2f3b57;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Manrope', sans-serif;
+  background: radial-gradient(circle at 15% 20%, rgba(252, 163, 17, 0.26), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(42, 157, 143, 0.22), transparent 32%),
+    radial-gradient(circle at 60% 75%, rgba(20, 33, 61, 0.12), transparent 35%),
+    linear-gradient(160deg, var(--bg-start), var(--bg-end));
+  color: #14213d;
+}
+
+.retinal-bg {
+  background-image: radial-gradient(circle at 10% 12%, rgba(252, 163, 17, 0.2), transparent 28%),
+    radial-gradient(circle at 90% 14%, rgba(214, 40, 40, 0.14), transparent 32%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 22px 48px rgba(20, 33, 61, 0.16);
+  backdrop-filter: blur(12px);
+}
+
+.hero-band {
+  background: linear-gradient(120deg, #14213d, #1f3b73 55%, #2a9d8f);
+  color: #fff;
+}
+
+.soft-text {
+  color: var(--ink-soft);
+}
+
+.suggestion-card {
+  border-radius: 0.9rem;
+  border: 1px solid transparent;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.93rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 24px rgba(20, 33, 61, 0.12);
+}
+
+.suggestion-next {
+  border-color: rgba(231, 111, 81, 0.4);
+  background: linear-gradient(135deg, rgba(231, 111, 81, 0.22), rgba(252, 163, 17, 0.24));
+  color: #7b1f0f;
+}
+
+.suggestion-treatment {
+  border-color: rgba(42, 157, 143, 0.45);
+  background: linear-gradient(135deg, rgba(42, 157, 143, 0.24), rgba(20, 33, 61, 0.16));
+  color: #0e3f3a;
+}

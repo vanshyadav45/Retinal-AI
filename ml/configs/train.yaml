@@ -1,0 +1,16 @@
+seed: 42
+batch_size: 8
+epochs: 40
+learning_rate: 0.0002
+num_workers: 4
+image_size: 512
+early_stopping_patience: 10
+grad_clip: 1.0
+k_folds: 5
+models:
+  dr_backbone: efficientnet_b4
+  glaucoma_backbone: resnet50
+paths:
+  master_csv: data/metadata/master_dataset.csv
+  checkpoints: ml/models/weights
+  logs: ml/training/logs
