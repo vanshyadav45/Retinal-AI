@@ -12,6 +12,9 @@ const links = [
 ];
 
 export default function Layout({ children }) {
+  const backendUrl = import.meta.env.VITE_API_URL;
+  const showBackendWarning = typeof window !== 'undefined' && !backendUrl;
+
   return (
     <div className="retinal-bg min-h-screen p-4 md:p-8">
       <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-[260px_1fr]">
@@ -39,6 +42,11 @@ export default function Layout({ children }) {
               );
             })}
           </nav>
+          {showBackendWarning ? (
+            <div className="mt-6 rounded-2xl border border-success/30 bg-success/10 p-3 text-xs text-success">
+              Self-contained demo mode is active. The app will use browser data and built-in clinical placeholders, so you can redeploy the frontend without a separate backend.
+            </div>
+          ) : null}
         </aside>
         <main className="rounded-3xl border border-white/40 bg-white/92 p-5 shadow-glow backdrop-blur md:p-8">{children}</main>
       </div>

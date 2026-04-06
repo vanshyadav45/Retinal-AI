@@ -6,11 +6,17 @@ import RiskGauge from '../components/RiskGauge';
 export default function ResultsPage({ result }) {
   const [view, setView] = useState('gradcam');
 
+  const toImageSrc = (value) => {
+    if (!value) return null;
+    if (typeof value === 'string' && value.startsWith('data:')) return value;
+    return `data:image/png;base64,${value}`;
+  };
+
   const overlays = useMemo(
     () => ({
-      gradcam: result?.gradcam_base64 ? `data:image/png;base64,${result.gradcam_base64}` : null,
-      lesion: result?.lesion_base64 ? `data:image/png;base64,${result.lesion_base64}` : null,
-      opticDisc: result?.optic_disc_base64 ? `data:image/png;base64,${result.optic_disc_base64}` : null
+      gradcam: toImageSrc(result?.gradcam_base64),
+      lesion: toImageSrc(result?.lesion_base64),
+      opticDisc: toImageSrc(result?.optic_disc_base64)
     }),
     [result]
   );
