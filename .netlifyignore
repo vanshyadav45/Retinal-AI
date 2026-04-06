@@ -1,0 +1,17 @@
+# Ignore heavy folders not needed for frontend deploy
+backend/
+ml/
+nginx/
+notebooks/
+
+# Data artifacts can exceed deploy limits
+data/raw/
+data/processed/
+
+# Runtime/generated outputs
+reports/generated/
+
+# Local/dev folders
+.venv/
+node_modules/
+frontend/node_modules/
